@@ -1,6 +1,7 @@
 package com.incedo.kirke.rag.ragapp.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
@@ -19,8 +20,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.incedo.kirke.rag.ragapp.mappers.RagMapper;
+import com.incedo.kirke.rag.ragapp.model.RagEntry;
 import com.incedo.kirke.rag.ragapp.model.User;
 import com.incedo.kirke.rag.ragapp.repositories.UserRepository;
+import com.incedo.kirke.rag.ragapp.requestbody.GetDataRequest;
+import com.incedo.kirke.rag.ragapp.requestbody.RagResponse;
 import com.incedo.kirke.rag.ragapp.requestbody.Response;
 import com.incedo.kirke.rag.ragapp.requestbody.UserCredentials;
 import com.incedo.kirke.rag.ragapp.requestbody.UserRegistration;
@@ -38,11 +43,11 @@ public class AuthController {
 
 	@GetMapping("/auth")
 	public String getauth() {
-		
-	  List q = jdbcTemplate.queryForList("select * from users", new HashMap());
-	  
-	  System.out.println("saaa --"+q.size());
-		
+
+		List q = jdbcTemplate.queryForList("select * from users", new HashMap());
+
+		System.out.println("saaa --" + q.size());
+
 		return "{'status': 'success'}";
 	}
 
@@ -98,6 +103,37 @@ public class AuthController {
 		} catch (Exception e) {
 			return new ResponseEntity(new Response("error"), HttpStatus.OK);
 		}
+	}
+
+	@ResponseBody
+	@PostMapping(value = "/getData", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RagResponse> getData(@RequestBody GetDataRequest getDataRequest,
+			HttpServletResponse response) {
+
+		try {
+
+			RagResponse sresonse = new RagResponse("success");
+
+			List<RagEntry> entries = new ArrayList<RagEntry>();
+
+			System.out.println("month" + getDataRequest.getMonth());
+			System.out.println("year" + getDataRequest.getYear());
+
+			List list = jdbcTemplate.query(
+					"select * from users u, ragmeeting r where u.id = r.user_id order by u.id asc", new RagMapper());
+
+			list.forEach(it -> entries.add((RagEntry) it));
+			sresonse.setRagEntryList(entries);
+
+			System.out.println(entries);
+
+			response.setContentType("application/json");
+			return new ResponseEntity(sresonse, HttpStatus.OK);
+
+		} catch (Exception e) {
+			return new ResponseEntity(new Response("error"), HttpStatus.OK);
+		}
+
 	}
 
 }

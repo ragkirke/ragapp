@@ -16,6 +16,9 @@ public class User {
 	private String lastName;
 	private String email;
 	private String password;
+	private Date lastPromotedOn;
+	private String program;
+	private String currentLevel;
 
 	private Long manager_id;
 
@@ -26,16 +29,26 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(Long id, String firstName, String lastName, String email, String password, Long manager_id, Date doj) {
+	
+	
+	
+	public User(Long id, String firstName, String lastName, String email, String password, Date lastPromotedOn,
+			String program, String currentLevel, Long manager_id, Date doj) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
+		this.lastPromotedOn = lastPromotedOn;
+		this.program = program;
+		this.currentLevel = currentLevel;
 		this.manager_id = manager_id;
 		this.doj = doj;
 	}
+
+
+
 
 	public Long getId() {
 		return id;
@@ -91,6 +104,30 @@ public class User {
 
 	public void setDoj(Date doj) {
 		this.doj = doj;
+	}
+
+	public Date getLastPromotedOn() {
+		return lastPromotedOn;
+	}
+
+	public void setLastPromotedOn(Date lastPromotedOn) {
+		this.lastPromotedOn = lastPromotedOn;
+	}
+
+	public String getProgram() {
+		return program;
+	}
+
+	public void setProgram(String program) {
+		this.program = program;
+	}
+
+	public String getCurrentLevel() {
+		return currentLevel;
+	}
+
+	public void setCurrentLevel(String currentLevel) {
+		this.currentLevel = currentLevel;
 	}
 
 

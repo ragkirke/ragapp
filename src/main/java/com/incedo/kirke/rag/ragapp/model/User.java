@@ -20,15 +20,13 @@ public class User {
 	private Long manager_id;
 
 	private Date doj;
-	private short rag;
 
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(Long id, String firstName, String lastName, String email, String password, Long manager_id, Date doj,
-			short rag) {
+	public User(Long id, String firstName, String lastName, String email, String password, Long manager_id, Date doj) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -37,7 +35,6 @@ public class User {
 		this.password = password;
 		this.manager_id = manager_id;
 		this.doj = doj;
-		this.rag = rag;
 	}
 
 	public Long getId() {
@@ -96,12 +93,6 @@ public class User {
 		this.doj = doj;
 	}
 
-	public short getRag() {
-		return rag;
-	}
 
-	public void setRag(short rag) {
-		this.rag = rag;
-	}
 
 }

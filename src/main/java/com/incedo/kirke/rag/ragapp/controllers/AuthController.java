@@ -1,6 +1,7 @@
 package com.incedo.kirke.rag.ragapp.controllers;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,8 +33,16 @@ public class AuthController {
 	@Autowired
 	private UserRepository userRepo;
 
+	@Autowired
+	private NamedParameterJdbcTemplate jdbcTemplate;
+
 	@GetMapping("/auth")
 	public String getauth() {
+		
+	  List q = jdbcTemplate.queryForList("select * from users", new HashMap());
+	  
+	  System.out.println("saaa --"+q.size());
+		
 		return "{'status': 'success'}";
 	}
 

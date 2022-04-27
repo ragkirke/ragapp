@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class RagEntry {
 
+	private Integer id;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -111,20 +112,20 @@ public class RagEntry {
 	public void setYear(int year) {
 		this.year = year;
 	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	@Override
 	public String toString() {
-		return "RagEntry [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", lastPromotedOn="
-				+ lastPromotedOn + ", program=" + program + ", currentLevel=" + currentLevel + ", manager_id="
-				+ manager_id + ", doj=" + doj + ", rag=" + rag + ", ragNotes=" + ragNotes + ", etaDate=" + etaDate
-				+ ", managerName=" + managerName + ", month=" + month + ", year=" + year + ", getFirstName()="
-				+ getFirstName() + ", getLastName()=" + getLastName() + ", getEmail()=" + getEmail()
-				+ ", getLastPromotedOn()=" + getLastPromotedOn() + ", getProgram()=" + getProgram()
-				+ ", getCurrentLevel()=" + getCurrentLevel() + ", getManager_id()=" + getManager_id() + ", getDoj()="
-				+ getDoj() + ", getRag()=" + getRag() + ", getRagNotes()=" + getRagNotes() + ", getEtaDate()="
-				+ getEtaDate() + ", getManagerName()=" + getManagerName() + ", getMonth()=" + getMonth()
-				+ ", getYear()=" + getYear() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+		return "RagEntry [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", lastPromotedOn=" + lastPromotedOn + ", program=" + program + ", currentLevel=" + currentLevel
+				+ ", manager_id=" + manager_id + ", doj=" + doj + ", rag=" + rag + ", ragNotes=" + ragNotes
+				+ ", etaDate=" + etaDate + ", managerName=" + managerName + ", month=" + month + ", year=" + year + "]";
 	}
+	
 	
 	
 	

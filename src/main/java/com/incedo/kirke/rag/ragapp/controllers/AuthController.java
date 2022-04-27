@@ -122,7 +122,11 @@ public class AuthController {
 			List list = jdbcTemplate.query(
 					"select * from users u, ragmeeting r where u.id = r.user_id order by u.id asc", new RagMapper());
 
+			
+			
 			list.forEach(it -> entries.add((RagEntry) it));
+			
+			
 			sresonse.setRagEntryList(entries);
 
 			System.out.println(entries);
@@ -131,6 +135,7 @@ public class AuthController {
 			return new ResponseEntity(sresonse, HttpStatus.OK);
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity(new Response("error"), HttpStatus.OK);
 		}
 
